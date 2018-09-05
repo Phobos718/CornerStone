@@ -1,0 +1,35 @@
+<html>
+
+<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+	<div class="header">
+		<p><a href='{{url_for('showLogin') }}'>LOGIN</a> </p>
+		<p><a href='{{url_for('gdisconnect') }}'>LOGOUT</a></p>
+	</div>
+
+	<div class="container">
+
+		<form action= "{{url_for('editBook', category_name = category_name, book_id = book_id)}}" method = 'POST'>
+
+		  Title:</br>
+		  <input type = 'text' size='80' name = 'title' placeholder = '{{book.title}}'></br>
+		  Author:</br>
+		  <input type = 'text' size='80' name = 'author' placeholder = '{{book.author}}'></br>
+		  Description:</br>
+		  <input class="descbox" type = 'text' size='250' name = 'description' placeholder = '{{book.description}}'></br>
+
+		  <input type='submit' value='Edit'>
+
+		</form>
+
+		<a href= '{{url_for('categoryPage', category_name = category_name)}}'>Cancel</a>
+
+	</div>
+
+</body>
+
+</html>

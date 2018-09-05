@@ -1,0 +1,44 @@
+<html>
+
+<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+	<div class="header">
+		<p><a href='{{url_for('showLogin') }}'>LOGIN</a> </p>
+		<p><a href='{{url_for('gdisconnect') }}'>LOGOUT</a></p>
+	</div>
+
+	<div class="container">
+
+		<h1>{{category.name}}</h1>
+
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<ul>
+					{% for message in messages %}
+				  	<li><strong>{{message}}</strong></li>
+				  {% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
+
+		<a href='{{url_for('newBook', category_name = category.name) }}'>Add New</a>
+
+		{% for i in books %}
+			<div class="box">
+				<a href= '{{url_for('bookPage', category_name = category_name, book_id=i.id)}}'><h3>{{i.title}}</h3></a> <p> - {{i.author}}</p>
+				<a href='{{url_for('editBook', category_name = category.name, book_id = i.id) }}'>Edit</a>
+				<a href = '{{url_for('deleteBook', category_name = category.name, book_id = i.id) }}'>Delete</a>
+			</div>
+		{% endfor %}
+
+		<a href= '{{url_for('homePage')}}'>Back</a>
+
+	</div>
+
+</body>
+
+</html>
