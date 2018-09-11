@@ -41,11 +41,11 @@
             </li>
             <li>
                 {% if login_session.username is defined %}
-                <a href="{{url_for('gdisconnect')}}">
+                <a href="{{url_for('logout')}}">
                     <span class="title">Logout</span>
                 </a>
                 {% else %}
-                <a href="{{url_for('showLogin')}}">
+                <a href="{{url_for('homePage')}}">
                     <span class="title">Login</span>
                 </a>
                 {% endif %}
@@ -60,6 +60,18 @@
             <input type='submit' value='Go'>
         </div>
     </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="box">
+            <ul>
+                {% for message in messages %}
+                <li><strong>{{message}}</strong></li>
+              {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    {% endwith %}
 
     <h1> Record - {{record_date}}</h1>
 
@@ -289,6 +301,7 @@
     {% endfor %}
 
     <input type='submit' value='Create'>
+    <input type="checkbox" name="save_default" value="save_default"> Save as user default<br>
 
     </form>
 

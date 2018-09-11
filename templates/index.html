@@ -6,21 +6,15 @@
 
 <body>
 
-<div class="header">
-	<p><a href='{{url_for('showLogin') }}'>LOGIN</a> </p>
-	<p><a href='{{url_for('gdisconnect') }}'>LOGOUT</a></p>
-</div>
-
 <div class="container">
 
-  <h1>Categories</h1>
+	                <a href="{{url_for('editRecord', record_date = 'today')}}">
+                    <span class="title">Records</span>
+                </a>
 
-  {% for i in categories %}
-		<div>
-		  <p><a href= '{{url_for('categoryPage', category_name = i.name)}}'>{{i.name}}</a></p>
-		</div>
-	{% endfor %}
-
+	<p>You're logged in as {{ login_session.username }}. And this here graph down yonder is just a placeholder. </p>
+	<img src="https://cdn-images-1.medium.com/max/1200/1*iO5NER89kECm8gdfEv23bg.gif">
+	<p>Duh </p>
 </div>
 
 
