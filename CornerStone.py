@@ -15,7 +15,7 @@ import httplib2
 
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://localhost:27017/sophrosynePrimary"
+#app.config["MONGO_URI"] = "mongodb://localhost:27017/cornerStone"
 mongo = PyMongo(app)
 
 CLIENT_ID = json.loads(
