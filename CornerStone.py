@@ -4,6 +4,7 @@ from flask import session as login_session
 from flask_pymongo import PyMongo
 from oauth2client.client import flow_from_clientsecrets, FlowExchangeError
 from bson import ObjectId
+import pymongo
 
 import datetime
 import bcrypt
@@ -15,7 +16,6 @@ import httplib2
 
 
 app = Flask(__name__)
-#app.config["MONGO_URI"] = "mongodb://localhost:27017/cornerStone"
 mongo = PyMongo(app)
 
 CLIENT_ID = json.loads(
@@ -112,7 +112,7 @@ def editRecord(record_date):
     if request.method == 'POST':
 
         # if there is an input from the date picker, go to selected date
-        if 'username' in request.form:
+        if 'goto_date' in request.form:
             return redirect('/record/' + request.form['goto_date'])
 
         form_input = {
