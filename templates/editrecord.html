@@ -77,81 +77,22 @@
 
     <form action="{{url_for('editRecord', record_date = record_date)}}" method = 'POST'>
 
-
+    {% for i in metrics %}
     <div class="box">
-        <span>Morning Rating:</span>
-        <input id="morning" name="morning" type="text"
+        <span>{{i.label}}</span>
+        <input id="{{i.name}}" name="{{i.name}}" type="text"
             data-provide="slider"
-            data-slider-ticks="[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
-            data-slider-ticks-labels='["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]'
+            data-slider-ticks="[{% for num in range(i.max) %}{{num}},{% endfor %}{{i.max}}]"
+            data-slider-ticks-labels="[{% for num in range(i.max) %}{{num}},{% endfor %}{{i.max}}]"
             data-slider-min="0"
-            data-slider-max="10"
+            data-slider-max="{{i.max}}"
             data-slider-step="1"
-            data-slider-value="{{prefill.morning}}"
-            data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.morning}}, "class": "prefill" }]'
+            data-slider-value="{{prefill.metrics[i.name]}}"
+            data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.metrics[i.name]}}, "class": "prefill" }]'
+
         />
     </div>
-
-
-    <div class="box">
-        <span>Afternoon Rating:</span>
-        <input id="afternoon" name="afternoon" type="text"
-            data-provide="slider"
-            data-slider-ticks="[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
-            data-slider-ticks-labels='["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]'
-            data-slider-min="0"
-            data-slider-max="10"
-            data-slider-step="1"
-            data-slider-value="{{prefill.afternoon}}"
-            data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.afternoon}}, "class": "prefill" }]'
-        />
-    </div>
-
-
-    <div class="box">
-        <span>Inflammation:</span>
-        <input id="inflammation" name="inflammation" type="text"
-            data-provide="slider"
-            data-slider-ticks="[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
-            data-slider-ticks-labels='["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]'
-            data-slider-min="0"
-            data-slider-max="10"
-            data-slider-step="1"
-            data-slider-value="{{prefill.inflammation}}"
-            data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.inflammation}}, "class": "prefill" }]'
-        />
-    </div>
-
-
-    <div class="box">
-        <span>Sleep Quality:</span>
-        <input id="sleep_q" name="sleep_q" type="text"
-            data-provide="slider"
-            data-slider-ticks="[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
-            data-slider-ticks-labels='["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]'
-            data-slider-min="0"
-            data-slider-max="10"
-            data-slider-step="1"
-            data-slider-value="{{prefill.sleep_q}}"
-            data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.sleep_q}}, "class": "prefill" }]'
-        />
-    </div>
-
-
-    <div class="box">
-        <span>Sleep Hours:</span>
-        <input id="sleep_h" name="sleep_h" type="text"
-            data-provide="slider"
-            data-slider-ticks="[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]"
-            data-slider-ticks-labels='["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]'
-            data-slider-min="0"
-            data-slider-max="12"
-            data-slider-step="1"
-            data-slider-value="{{prefill.sleep_h}}"
-            data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.sleep_h}}, "class": "prefill" }]'
-        />
-    </div>
-
+    {% endfor %}
 
 
     <h2>Food</h2>

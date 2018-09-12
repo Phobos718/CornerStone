@@ -1,18 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-from flask import jsonify, make_response
 from flask import session as login_session
 from flask_pymongo import PyMongo
-from oauth2client.client import flow_from_clientsecrets, FlowExchangeError
-from bson import ObjectId
-import pymongo
 
+import pandas as pd
 import datetime
 import bcrypt
-import requests
-import random
-import string
 import json
-import httplib2
+
 
 
 app = Flask(__name__)
@@ -28,7 +22,13 @@ APPLICATION_NAME = "CornerStone"
 @app.route('/home')
 def homePage():
     if 'username' in login_session:
-        return render_template('index.html', login_session=login_session)
+
+        foods = mongo.db.foods
+        test_data = pd.DataFrame(list(foods.find()))
+        print(test_data)
+
+        return render_template('index.html', login_session=login_session, test_data=test_data)
+
 
     return render_template('login.html')
 
@@ -68,6 +68,7 @@ def register():
                        "password": hashpass,
                        "defaults": {"nutrition": {
                            "feeding_window": [12, 21],
+                           "metrics" : {},
                            "food": {},
                            "supplements": {}
                        },
@@ -99,6 +100,7 @@ def editRecord(record_date):
     supplements = list(mongo.db.supplements.find())
     activities = list(mongo.db.activities.find())
     foods = list(mongo.db.foods.find())
+    metrics = list(mongo.db.metrics.find())
     users = mongo.db.users
     records = mongo.db.records
 
@@ -118,11 +120,7 @@ def editRecord(record_date):
         form_input = {
             "user": login_session['username'],
             "date": date,
-            "morning": int(request.form['morning']),
-            "afternoon": int(request.form['afternoon']),
-            "inflammation" : int(request.form['inflammation']),
-            "sleep_h": int(request.form['sleep_h']),
-            "sleep_q": int(request.form['sleep_q']),
+            "metrics" : {},
             "nutrition": {
                 "calories": int(request.form['calories']),
                 "feeding_window": [int(x) for x in request.form['feeding_window'].split(",")],
@@ -133,6 +131,12 @@ def editRecord(record_date):
             },
             "activity": {}
         }
+
+        for metric in metrics:
+            name = metric["name"]
+            value = int(request.form[name])
+            if value:
+                form_input["metrics"][name] = value
 
         # Add non-empty supplements to input object
         for supplement in supplements:
@@ -174,7 +178,7 @@ def editRecord(record_date):
 
         return redirect('/record/today')
     else:
-        return render_template("editrecord.html", supplements=supplements, foods=foods, activities=activities, prefill=prefill, record_date = record_date, login_session = login_session)
+        return render_template("editrecord.html", supplements=supplements, foods=foods, activities=activities, metrics=metrics, prefill=prefill, record_date = record_date, login_session = login_session)
 
 
 # User Helper Functions
