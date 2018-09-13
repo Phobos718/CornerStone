@@ -107,8 +107,8 @@
             data-slider-max="24"
             data-slider-step="1"
             data-slider-range="True"
-            data-slider-value="[{{prefill.nutrition.feeding_window.0}}, {{prefill.nutrition.feeding_window.1}}]"
-            data-slider-rangeHighlights='[{ "start": {{prefill.nutrition.feeding_window.0}}, "end": {{prefill.nutrition.feeding_window.1}}, "class": "prefill" }]'
+            data-slider-value="[{{prefill.feeding_window_open}}, {{prefill.feeding_window_close}}]"
+            data-slider-rangeHighlights='[{ "start": {{prefill.feeding_window_open}}, "end": {{prefill.feeding_window_close}}, "class": "prefill" }]'
         /><br/>
 
         <ul id="food_list">
@@ -120,7 +120,7 @@
     </div>
 
     {% for i in foods %}
-    <div id="{{i.name}}" class="box" {% if prefill.nutrition.food[i.name] is not defined %}style="display: none"{% endif %}>
+    <div id="{{i.name}}" class="box" {% if prefill.foods[i.name] is not defined %}style="display: none"{% endif %}>
         <span>{{i.label}} (1 unit = {{i.standard_portion}}g)</span>
         <input name="{{i.name}}"
         data-provide="slider"
@@ -130,8 +130,8 @@
         data-slider-max="{{i.max_portions * i.standard_portion}}"
         data-slider-step="5"
         data-slider-ticks-snap-bounds="{{i.standard_portion / 10}}"
-        data-slider-value="{{prefill.nutrition.food[i.name]}}"
-        data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.nutrition.food[i.name]}}, "class": "prefill" }]'
+        data-slider-value="{{prefill.foods[i.name]}}"
+        data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.foods[i.name]}}, "class": "prefill" }]'
         />
     </div>
     {% endfor %}
@@ -145,8 +145,8 @@
             data-slider-min="0"
             data-slider-max="5000"
             data-slider-step="50"
-            data-slider-value="{{prefill.nutrition.calories}}"
-            data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.nutrition.calories}}, "class": "prefill" }]'
+            data-slider-value="{{prefill.calories}}"
+            data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.calories}}, "class": "prefill" }]'
         />
     </div>
 
@@ -171,13 +171,13 @@
         data-slider-min="0"
         data-slider-max="6"
         data-slider-step="1"
-        data-slider-value="{{prefill.nutrition.supplements.coffee}}"
-        data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.nutrition.supplements.coffee}}, "class": "prefill" }]'
+        data-slider-value="{{prefill.supplements.coffee}}"
+        data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.supplements.coffee}}, "class": "prefill" }]'
         />
     </div>
 
     {% for i in supplements %}
-    <div id="{{i.name}}" class="box" {% if prefill.nutrition.supplements[i.name] is not defined %} style="display: none" {% endif %}>
+    <div id="{{i.name}}" class="box" {% if prefill.supplements[i.name] is not defined %} style="display: none" {% endif %}>
         <span>{{i.label}} ({{i.standard_dose}}{{i.dose_unit}})</span>
         <input name="{{i.name}}"
         data-provide="slider"
@@ -186,8 +186,8 @@
         data-slider-min="0"
         data-slider-max="200"
         data-slider-step="25"
-        data-slider-value="{{prefill.nutrition.supplements[i.name]}}"
-        data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.nutrition.supplements[i.name]}}, "class": "prefill" }]'
+        data-slider-value="{{prefill.supplements[i.name]}}"
+        data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.supplements[i.name]}}, "class": "prefill" }]'
         />
     </div>
     {% endfor %}
@@ -206,7 +206,7 @@
     </div>
 
     {% for i in activities %}
-    <div id="{{i.name}}" class="box" {% if prefill.activity[i.name] is not defined %} style="display: none" {% endif %}>
+    <div id="{{i.name}}" class="box" {% if prefill.activities[i.name] is not defined %} style="display: none" {% endif %}>
         <h3>{{i.label}}</h3>
         <span>Intensity:</span>
         <input id="{{i.name}}_intensity" name="{{i.name}}_intensity" type="text"
@@ -216,9 +216,9 @@
             data-slider-min="0"
             data-slider-max="{{i.max}}"
             data-slider-step="{% if i.step is defined %}{{i.step}} {% else %}1{% endif %}"
-            {% if prefill.activity[i.name] %}
-            data-slider-value="{{prefill.activity[i.name].intensity}}"
-            data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.activity[i.name].intensity}}, "class": "prefill" }]'
+            {% if prefill.activities[i.name] %}
+            data-slider-value="{{prefill.activities[i.name].intensity}}"
+            data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.activities[i.name].intensity}}, "class": "prefill" }]'
             {% else %}
             data-slider-value="0"
             {% endif %}
@@ -231,9 +231,9 @@
             data-slider-min="0"
             data-slider-max="24"
             data-slider-step="1"
-            {% if prefill.activity[i.name] %}
-            data-slider-value="{{prefill.activity[i.name].time}}"
-            data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.activity[i.name].time}}, "class": "prefill" }]'
+            {% if prefill.activities[i.name] %}
+            data-slider-value="{{prefill.activities[i.name].time}}"
+            data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.activities[i.name].time}}, "class": "prefill" }]'
             {% else %}
             data-slider-value="0"
             {% endif %}
