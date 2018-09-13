@@ -11,8 +11,7 @@ from utility import Record, User
 
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://localhost:27017/sophrosynePrimary"
-#app.config["MONGO_URI"] = "mongodb://Phobos718:Everest712frf2@18.130.75.134:27017/cornerStone?authSource=admin"
+app.config["MONGO_URI"] = "mongodb://localhost:27017/cornerstonePrimary"
 mongo = PyMongo(app)
 
 CLIENT_ID = json.loads(
