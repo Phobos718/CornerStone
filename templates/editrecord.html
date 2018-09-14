@@ -107,8 +107,8 @@
             data-slider-max="24"
             data-slider-step="1"
             data-slider-range="True"
-            data-slider-value="[{{prefill.feeding_window_open}}, {{prefill.feeding_window_close}}]"
-            data-slider-rangeHighlights='[{ "start": {{prefill.feeding_window_open}}, "end": {{prefill.feeding_window_close}}, "class": "prefill" }]'
+            data-slider-value="[{{prefill.misc.feeding_window_open}}, {{prefill.misc.feeding_window_close}}]"
+            data-slider-rangeHighlights='[{ "start": {{prefill.misc.feeding_window_open}}, "end": {{prefill.misc.feeding_window_close}}, "class": "prefill" }]'
         /><br/>
 
         <ul id="food_list">
@@ -138,6 +138,7 @@
 
     <div class="box">
         <span>Calories:</span>
+        <input type="checkbox" id="calories_manual" name="calories_manual" value="True">Enter calories manually<br>
         <input id="calories" name="calories" type="text"
             data-provide="slider"
             data-slider-ticks="[0, 1000, 2000, 3000, 4000, 5000]"
@@ -146,6 +147,7 @@
             data-slider-max="5000"
             data-slider-step="50"
             data-slider-value="{{prefill.calories}}"
+            data-slider-enabled="false"
             data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.calories}}, "class": "prefill" }]'
         />
     </div>
@@ -171,8 +173,8 @@
         data-slider-min="0"
         data-slider-max="6"
         data-slider-step="1"
-        data-slider-value="{{prefill.supplements.coffee}}"
-        data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.supplements.coffee}}, "class": "prefill" }]'
+        data-slider-value="{{prefill.misc.coffee}}"
+        data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.misc.coffee}}, "class": "prefill" }]'
         />
     </div>
 
@@ -242,7 +244,7 @@
     {% endfor %}
 
     <input type='submit' value='Create'>
-    <input type="checkbox" name="save_default" value="save_default"> Save as user default<br>
+    <input type="checkbox" name="save_default" value="True"> Save as user default<br>
 
     </form>
 
@@ -292,6 +294,15 @@
               .attr("value","0")
               .slider('relayout');
           event.preventDefault();
+        });
+
+        $("#calories_manual").click(function() {
+            if(this.checked) {
+                $("#calories").slider("enable");
+            }
+            else {
+                $("#calories").slider("disable");
+            }
         });
 
 
