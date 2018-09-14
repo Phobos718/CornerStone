@@ -1,12 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask import session as login_session
 from flask_pymongo import PyMongo
+from utility import Record, User
 
 import pandas as pd
 import datetime
 import bcrypt
 import json
-from utility import Record, User
+
 
 
 
@@ -86,13 +87,11 @@ def editRecord(record_date):
         date = datetime.datetime(year=int(record_date[0:4]), month=int(record_date[5:7]), day=int(record_date[8:10]))
 
     if request.method == 'POST':
-
         if 'goto_date' in request.form:
             return redirect('/record/' + request.form['goto_date'])
 
         newRecord = Record(request.form, mongo.db)
-        newRecord.save_to_mongo(login_session['username'],date)
-
+        newRecord.save_to_mongo(login_session['username'], date)
         return redirect('/record/today')
     else:
 
@@ -119,46 +118,11 @@ if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=5000)
 
-#
+
+
 # @app.route('/util')
 # def util():
 #
-#     metrics = mongo.db.metrics
-#     data = [
-#         {"name"    : "morning",
-#           "label"   : "Morning Rating",
-#           "max"  : 10,
-#           "step" : 1
-#          },
-#         {"name": "afternoon",
-#          "label": "Afternoon Rating",
-#          "max": 10,
-#          "step": 1
-#          },
-#         {"name": "sleep_hours",
-#          "label": "Hours Slept",
-#          "max": 12,
-#          "step": 0.5
-#          },
-#         {"name": "insomnia",
-#          "label": "Hours awake in bed",
-#          "max": 12,
-#          "step": 0.5
-#          },
-#         {"name": "sleep_quality",
-#          "label": "Sleep Quality",
-#          "max": 10,
-#          "step": 1
-#          },
-#         {"name": "inflammation",
-#          "label": "Inflammation",
-#          "max": 10,
-#          "step": 1
-#          }
-#         ]
 #
-#     metrics.insert(data)
 #     flash('insert successful')
-#     redirect(url_for('homePage'))
-
 
