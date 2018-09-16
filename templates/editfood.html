@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block title %}Edit Food{% endblock %}
+{% block head %}
+{{super()}}
+{% endblock %}
+
+{% block content %}
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flashbox">
+            <ul>
+                {% for message in messages %}
+                <li><strong>{{message}}</strong></li>
+              {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    {% endwith %}
+
+	<div class="box">
+
+		<form action= "{{url_for('editFood', food_name=food_name)}}" method='POST'>
+
+		Label:</br>
+		<input type='text' size='80' name='label' value='{{food.label}}'></br>
+		DB name:</br>
+		<input type='text' size='80' {% if food_name != "createnew" %}readonly{% endif %} name='name' value='{{food.name}}'></br>
+		Protein (/100g):</br>
+		<input type='number' max="100" name='protein' value='{{food.protein}}'></br>
+		Fat (/100g):</br>
+		<input type='number' max="100" name='fat' value='{{food.fat}}'></br>
+		Carbohydrate (/100g):</br>
+		<input type='number' max="100" name='carb' value='{{food.carb}}'></br>
+		Fibre (/100g):</br>
+		<input type='number' max="100" name='fibre' value='{{food.fibre}}'></br>
+		Standard portion:</br>
+		<input type='number' max="100" name='standard_portion' value='{{food.standard_portion}}'></br>
+		Portion price:</br>
+		<input type='number' max="100" name='p_price' value='{{food.p_price}}'></br>
+		Max portions on input slider:</br>
+		<input type='number' max="12" name='max_portions' value='{{food.max_portions}}'></br>
+		</br>
+		<button type="submit" class="button1">Save</button>
+
+		</form>
+
+		<a class="button1" href="{{url_for('foodsPage')}}">Cancel</a>
+
+	</div>
+
+{% endblock %}

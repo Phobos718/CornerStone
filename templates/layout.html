@@ -3,23 +3,80 @@
 
 <head>
 
+    {% block head %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel=stylesheet href="https://fonts.googleapis.com/css?family=Josefin+Sans">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/ace-responsive-menu.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap-slider.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/multi-list.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/ace-responsive-menu.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <title>{% block title %}{% endblock %} - CornerStone</title>
+    {% endblock %}
 
-    <title>Login</title>
-
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-
+    <!--<meta name="viewport" content="width=device-width">-->
 </head>
+
+<nav>
+        <!-- Menu Toggle btn-->
+        <div class="menu-toggle">
+            <h3>{% if login_session.username is defined %}{{login_session.username}}{% else %}Guest{% endif %}</h3>
+            <button type="button" id="menu-btn">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <!-- Responsive Menu Structure-->
+        <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
+        <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
+            <li>
+                <a href="{{url_for('homePage')}}">
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{url_for('editRecord', record_date='today')}}">
+                    <span class="title">Edit Records</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{url_for('foodsPage')}}">
+                    <span class="title">Foods</span>
+                </a>
+            </li>
+            <li>
+                {% if login_session.username is defined %}
+                <a href="{{url_for('logout')}}">
+                    <span class="title">Logout</span>
+                </a>
+                {% else %}
+                <a href="{{url_for('homePage')}}">
+                    <span class="title">Login</span>
+                </a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
 
 <body>
 
-    {% block body %}{% endblock %}
 
-    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    {% block content %}{% endblock %}
 
 </body>
 
+<script>
+    $("#respMenu").aceResponsiveMenu();
+</script>
+
 </html>
+
+
+

@@ -3,6 +3,24 @@ body {
     font-size: 15px;
     color: #8c8982;
     background-color: #393e47;
+    overflow-x: hidden;
+    margin-top: 80px;
+}
+
+nav {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    background-color: #2b2e33;
+    z-index: 1;
+}
+
+.menu-toggle {
+    border-bottom: 2px solid #ff9e21;
+}
+
+form {
+    overflow: hidden;
 }
 
 h1,
@@ -15,6 +33,7 @@ h4 {
 h1,
 h2 {
     margin: 0;
+    margin-top: 10px;
 }
 
 h1 {
@@ -66,9 +85,18 @@ a {
   margin-bottom: 10px;
   border: 3px;
   background-color: #2b2e33;
-  padding-left: 5px;
   padding-top: 5px;
   border-top: 2px solid #8c8982;
+}
+
+.flashbox {
+  margin-bottom: 10px;
+  border: 3px;
+  background-color: #471510;
+  color: #ff7563;
+  padding-left: 5px;
+  padding-top: 5px;
+  border-top: 2px solid #e53b24;
 }
 
 #feeding-window .slider-selection {
@@ -92,4 +120,41 @@ background-color: #393e47;
 
 .ml-container {
     margin: 10px;
+}
+
+input[type=text] {
+    width: 95%;
+    margin: 5px;
+}
+
+input[type=number] {
+    margin: 5px;
+}
+
+input[readonly] {
+    background-color: dimgray;
+    color: darkgrey;
+}
+
+.button1 {
+    display: inline-block;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid #FFFFFF;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: 300;
+    color: #FFFFFF;
+    text-align: center;
+    transition: all 0.2s;
+    background-color: transparent;
+}
+.button1:hover {
+    color:#000000;
+    background-color:#FFFFFF;
+}
+
+button {
+    background-color: transparent;
 }
