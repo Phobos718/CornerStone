@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block title %}Edit Record{% endblock %}
+{% block head %}
+{{super()}}
+{% endblock %}
+
+{% block content %}
+	<h1>Foods</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flashbox">
+            <ul>
+                {% for message in messages %}
+                <li><strong>{{message}}</strong></li>
+              {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    {% endwith %}
+
+	<a class="button1"href="{{url_for('editFood', food_name='createnew')}}">Add New</a>
+
+	{% for i in foods %}
+		<div class="box">
+			<a href="{{url_for('editFood', food_name=i.name)}}"><h3>{{i.label}}</h3></a>
+            <ul>
+                <li>{{i.protein}}g Protein</li>
+                <li>{{i.fat}}g Fat</li>
+                <li>{{i.carb}}g Carbohydrates</li>
+                <li>{{i.fibre}}g Fibre</li>
+                <li>Standard portion size: {{i.standard_portion}}</li>
+                <li>Price per portion: £{{i.p_price}}</li>
+                <li></li>
+            </ul>
+            <a class="button1" href = "{{url_for('editFood', food_name=i.name)}}">Edit</a>
+		</div>
+	{% endfor %}
+
+	<a class="button1" href="{{url_for('editFood', food_name='createnew')}}">Add New</a>
+
+{% endblock %}

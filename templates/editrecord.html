@@ -1,69 +1,16 @@
-<html>
+{% extends "layout.html" %}
+{% block title %}Edit Record{% endblock %}
+{% block head %}
+{{super()}}
+    <script src="{{ url_for('static', filename='js/multi-list.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-slider.js') }}"></script>
+{% endblock %}
 
-<head>
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.min.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap-slider.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='multi-list.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='ace-responsive-menu.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
-    <script src="{{ url_for('static', filename='jquery.min.js')}}"></script>
-    <script src="{{ url_for('static', filename='ace-responsive-menu.js')}}"></script>
-    <script src="{{ url_for('static', filename='multi-list.js') }}"></script>
-    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='bootstrap-slider.js') }}"></script>
-    <meta name="viewport" content="width=device-width">
-</head>
-
-<body>
-    <nav>
-        <!-- Menu Toggle btn-->
-        <div class="menu-toggle">
-            <h3>{% if login_session.username is defined %}{{login_session.username}}{% else %}Guest{% endif %}</h3>
-            <button type="button" id="menu-btn">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <!-- Responsive Menu Structure-->
-        <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
-        <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
-            <li>
-                <a href="javascript:;">
-                    <span class="title">Edit Records</span>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <span class="title">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                {% if login_session.username is defined %}
-                <a href="{{url_for('logout')}}">
-                    <span class="title">Logout</span>
-                </a>
-                {% else %}
-                <a href="{{url_for('homePage')}}">
-                    <span class="title">Login</span>
-                </a>
-                {% endif %}
-            </li>
-        </ul>
-    </nav>
-
-    <form action="{{url_for('editRecord', record_date = record_date)}}" method = 'POST'>
-        <div>
-            <label for="go_to">Go to</label>
-            <input type="date" id="go_to" name="goto_date"/>
-            <input type='submit' value='Go'>
-        </div>
-    </form>
+{% block content %}
 
     {% with messages = get_flashed_messages() %}
         {% if messages %}
-        <div class="box">
+        <div class="flashbox">
             <ul>
                 {% for message in messages %}
                 <li><strong>{{message}}</strong></li>
@@ -74,6 +21,15 @@
     {% endwith %}
 
     <h1> Record - {{record_date}}</h1>
+<div class="box">
+    <form action="{{url_for('editRecord', record_date = record_date)}}" method = 'POST'>
+
+            <label for="go_to">Go to</label>
+            <input type="date" id="go_to" name="goto_date"/>
+            <input type='submit' value='Go'>
+
+    </form>
+</div>
 
     <form action="{{url_for('editRecord', record_date = record_date)}}" method = 'POST'>
 
@@ -89,7 +45,6 @@
             data-slider-step="1"
             data-slider-value="{{prefill.metrics[i.name]}}"
             data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.metrics[i.name]}}, "class": "prefill" }]'
-
         />
     </div>
     {% endfor %}
@@ -243,7 +198,7 @@
     </div>
     {% endfor %}
 
-    <input type='submit' value='Create'>
+        <button class="button1" type='submit'>Create</button>
     <input type="checkbox" name="save_default" value="True"> Save as user default<br>
 
     </form>
@@ -331,9 +286,5 @@
               .attr("value","0")
           event.preventDefault();
         });
-
-        $("#respMenu").aceResponsiveMenu();
-
     </script>
-</body>
-</html>
+{% endblock %}

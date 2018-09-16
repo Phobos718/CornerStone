@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask import session as login_session
 from flask_pymongo import PyMongo
-from utility import Record, User
+from utility import Record, User, Food
 
 import pandas as pd
 import datetime
@@ -111,6 +111,40 @@ def editRecord(record_date):
                                record_date=record_date,
                                login_session=login_session
                                )
+
+
+@app.route('/editfood/<food_name>', methods=['POST', 'GET'])
+def editFood(food_name):
+    if 'username' not in login_session:
+         return redirect('/')
+
+    if request.method == 'POST':
+
+        newFood = Food(request.form, mongo.db)
+        if food_name == 'createnew' and mongo.db.foods.find_one({
+            '$or': [
+                {'name': newFood.name},
+                {'label': newFood.label}
+            ]
+        }):
+            flash("A food by that DB name or label already exists.")
+            return render_template('editfood.html', food_name=food_name, food=newFood.json(), login_session=login_session)
+        elif not newFood.name or not newFood.label:
+            flash("Label and DB name can not be empty.")
+            return render_template('editfood.html', food_name=food_name, food=newFood.json(), login_session=login_session)
+        newFood.save_to_db(food_name)
+        return redirect('/foods')
+    else:
+        food = mongo.db.foods.find_one({"name": food_name})
+        return render_template('editfood.html', food=food, food_name=food_name, login_session=login_session)
+
+
+@app.route('/foods', methods=['POST', 'GET'])
+def foodsPage():
+    if 'username' not in login_session:
+         return redirect('/')
+    foods = list(mongo.db.foods.find())
+    return render_template('foods.html', foods=foods, login_session=login_session)
 
 
 if __name__ == '__main__':
