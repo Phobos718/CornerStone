@@ -141,10 +141,10 @@ class Food(object):
         self.db = db
         self.label = webform['label']
         self.name = webform['name']
-        self.protein = int(webform['protein'])
-        self.fat = int(webform['fat'])
-        self.carb = int(webform['carb'])
-        self.fibre = int(webform['fibre'])
+        self.protein = float(webform['protein'])
+        self.fat = float(webform['fat'])
+        self.carb = float(webform['carb'])
+        self.fibre = float(webform['fibre'])
         self.standard_portion = float(webform['standard_portion'])
         self.p_price = float(webform['p_price'])
         self.max_portions = int(webform['max_portions'])
