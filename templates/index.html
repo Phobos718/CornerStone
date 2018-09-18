@@ -2,6 +2,11 @@
 {% block title %}Edit Record{% endblock %}
 {% block head %}
 {{super()}}
+
+<link href="http://cdn.pydata.org/bokeh/release/bokeh-0.13.0.min.css" rel="stylesheet" type="text/css">
+<link href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.13.0.min.css" rel="stylesheet" type="text/css">
+<script src="http://cdn.pydata.org/bokeh/release/bokeh-0.13.0.min.js"></script>
+<script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.13.0.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -14,7 +19,6 @@
 
 	<p>You're logged in as {{ login_session.username }}.</p>
 
-	<p>{{test_data}}</p>
 </div>
 
 {% endblock %}

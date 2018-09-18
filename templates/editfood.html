@@ -27,19 +27,19 @@
 		DB name:</br>
 		<input type='text' size='80' {% if food_name != "createnew" %}readonly{% endif %} name='name' value='{{food.name}}'></br>
 		Protein (/100g):</br>
-		<input type='number' max="100" name='protein' value='{{food.protein}}'></br>
+		<input type='number' step="0.01" max="100" name='protein' value='{{food.protein}}'></br>
 		Fat (/100g):</br>
-		<input type='number' max="100" name='fat' value='{{food.fat}}'></br>
+		<input type='number' step="0.01" max="100" name='fat' value='{{food.fat}}'></br>
 		Carbohydrate (/100g):</br>
-		<input type='number' max="100" name='carb' value='{{food.carb}}'></br>
+		<input type='number' step="0.01" max="100" name='carb' value='{{food.carb}}'></br>
 		Fibre (/100g):</br>
-		<input type='number' max="100" name='fibre' value='{{food.fibre}}'></br>
+		<input type='number' step="0.01" max="100" name='fibre' value='{{food.fibre}}'></br>
 		Standard portion:</br>
-		<input type='number' max="100" name='standard_portion' value='{{food.standard_portion}}'></br>
+		<input type='number' step="0.01" max="100" name='standard_portion' value='{{food.standard_portion}}'></br>
 		Portion price:</br>
-		<input type='number' max="100" name='p_price' value='{{food.p_price}}'></br>
+		<input type='number' step="0.01" max="100" name='p_price' value='{{food.p_price}}'></br>
 		Max portions on input slider:</br>
-		<input type='number' max="12" name='max_portions' value='{{food.max_portions}}'></br>
+		<input type='number' step="0.01" max="12" name='max_portions' value='{{food.max_portions}}'></br>
 		</br>
 		<button type="submit" class="button1">Save</button>
 

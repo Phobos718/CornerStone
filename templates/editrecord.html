@@ -42,7 +42,7 @@
             data-slider-ticks-labels="[{% for num in range(i.max) %}{{num}},{% endfor %}{{i.max}}]"
             data-slider-min="0"
             data-slider-max="{{i.max}}"
-            data-slider-step="1"
+            data-slider-step="{{i.step}}"
             data-slider-value="{{prefill.metrics[i.name]}}"
             data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.metrics[i.name]}}, "class": "prefill" }]'
         />
