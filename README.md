@@ -1,24 +1,44 @@
-## Project 04 - Item Catalog (Book Catalog)
+## CornerStone - A project for exploratory data analysis of personal habits and their outcomes
 
-This project is a Flask CRUD application that manages a book catalog in form of a SQL database. The site implements 3rd party authentication.
-Start small, and then you can quickly add any upgrades you need 
+As a brief summary, this is a Flask application designed to gather data of a user's habits daily and to provide a platform for analyzing it via data visualisation and more advanced methods later on to allow for seeing through more noisy data.
+It's buing developed predominantly for personal use as an attempt to identify the causes of certain food sensitivities and minor (although rather annoying) sleep disorders that run in my family and to maximise personal performance by eliminating them. 
+
+Information is gathered via a survey about food and supplement intake, physical and other activities, and a set of metrics each day. 
+Once enough data is gathered it can be analysed by the user (see screenshots below)
+
+Many aspects of this project are still in a prototype phase, multiple changes in structure can be expected as I refactor the code to allow for better scalability. Net functionality is my top priority, therefore design and front end will be moving the slowest.
+
+The live version of this project is currently being hosted on AWS. Test user credentials will be posted here soon.
 
 
-## Prerequisites
+## To-Do list (in order of priority)
 
-1. Vagrant
-2. VirtualBox
-3. Python
-4. fullstack-nanodegree-vm provided by Udacity
+- Interactive data visualisation dashboard with Bokeh
+- Ability for users to add new supplements and activities to DB like they can foods
+- Ability for users to directly modify survey prefill defaults
+- Front end improvements, bugfixes, better documentation
+- A minimal admin dashboard with database backup functionality
+- Items frequently entered by users to show up on top of selector list on the Edit Records page
+- Streamlining date selection on 'Edit Records' page via asynchronous calls
+- Improved security and login system
+
+- MLP2
+
+## Main technologies used
+
+1. Python 3
+2. MongoDB
+3. Flask
+4. Bokeh (for interactive data visualisation)
+
 
 ## How to Run
 
-1. Navigate into the vagrant directory and replace the files of the catalog folder with the contents of this zip.
-2. vagrant up (inside the vagrant folder)
-3. vagrant ssh
-4. cd /vagrant/catalog
-5. python database_setup.py
-6. python dbpop.py (optional - to populate the database with sample data)
-7. python application.py
+To run a development server, 
+1. simply spin up a local MongoDB instance and create the following collections:
+  - records
+  - supplements
+  - users
+  - (TBC)
 
 After having completed these steps, the site should be up and running on http://localhost:5000/
