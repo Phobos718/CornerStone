@@ -21,8 +21,7 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/sophrosynePrimary"
 #app.config["MONGO_URI"] = "mongodb://user:password@18.130.75.134:27017/cornerStone?authSource=admin"
 mongo = PyMongo(app)
 
-app.config["MONGO_URI"] = "mongodb://Phobos718:Everest712frf2@18.130.75.134:27017/cornerStone?authSource=admin"
-mongo2 = PyMongo(app)
+
 
 # CLIENT_ID = json.loads(
 #     app.open_resource('client_secret.json', 'r').read())['web']['client_id']
@@ -145,7 +144,6 @@ def create_figure():
 
     factor2 = Select(title='Factor2', value='bar', options=['foo', 'bar', 'baz'])
     factor2.on_change('value', update)
-
 
 
     controls = widgetbox([metric1, metric2, factor1, factor2], width=200)
