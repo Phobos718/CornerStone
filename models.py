@@ -10,9 +10,9 @@ class Record(object):
         self.supplements = {}
         self.activities = {}
         self.misc = {
-            "feeding_window_open": webform['feeding_window'].split(",")[0],
-            "feeding_window_close": webform['feeding_window'].split(",")[1],
-            "coffee": webform["coffee"]
+            "feeding_window_open": int(webform['feeding_window'].split(",")[0]),
+            "feeding_window_close": int(webform['feeding_window'].split(",")[1]),
+            "coffee": int(webform["coffee"])
         }
 
         if 'save_default' in webform:
@@ -170,3 +170,4 @@ class Food(object):
 
 class Supplement(object):
     pass
+

@@ -19,6 +19,11 @@
 
 	<p>You're logged in as {{ login_session.username }}.</p>
 
+	{{ script|safe }}
+	{{ div|safe }}
+
+
+	{{test_data}}
 </div>
 
 {% endblock %}
