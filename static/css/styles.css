@@ -60,6 +60,10 @@ a {
     color: #ffffff;
 }
 
+.item-specs li {
+    margin-left: 20px;
+}
+
 .descbox {
   max-width: 95%;
   height: 80px;
@@ -75,10 +79,8 @@ a {
 
 .container {
   margin: auto;
-  margin-top: 80px;
-  width: 95%;
-  max-width: 900px;
-  border: 3px #ffffcc;
+  width: 100%;
+  max-width: 600px;
   padding: 0px;
 }
 

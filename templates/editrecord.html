@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="container">
     {% with messages = get_flashed_messages() %}
         {% if messages %}
         <div class="flashbox">
@@ -202,6 +202,7 @@
     <input type="checkbox" name="save_default" value="True"> Save as user default<br>
 
     </form>
+</div>
 
     <script>
         $("#supplement_list").multiList();
