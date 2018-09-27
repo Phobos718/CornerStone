@@ -5,6 +5,7 @@ body {
     background-color: #393e47;
     overflow-x: hidden;
     margin-top: 80px;
+    margin-bottom: 40px;
 }
 
 nav {
@@ -16,7 +17,7 @@ nav {
 }
 
 .menu-toggle {
-    border-bottom: 2px solid #ff9e21;
+    border-bottom: 2px solid #add8e6;
 }
 
 form {
@@ -44,11 +45,11 @@ h2 {
     border-bottom: 2px solid #eee;
 }
 
+p,
 span {
     margin: 10px;
 }
 
-p,
 dd,
 dt {
     color: #cccccc;
@@ -56,7 +57,7 @@ dt {
 
 a {
     text-decoration: none;
-    color: #ffffcc;
+    color: #ffffff;
 }
 
 .descbox {
@@ -104,7 +105,7 @@ a {
 }
 
 .slider-rangeHighlight.prefill {
-    background: #ff9e21;
+    background: #add8e6;
     height: 50% !important;
     bottom: 0px !important;
     top: unset !important;
@@ -153,6 +154,10 @@ input[readonly] {
 .button1:hover {
     color:#000000;
     background-color:#FFFFFF;
+}
+
+.menu-toggle #menu-btn {
+    float:left;
 }
 
 button {

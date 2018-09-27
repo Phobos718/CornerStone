@@ -1,5 +1,7 @@
 client_secret.json
 CornerStone.wsgi
+records.db
 venv3/
 .idea/
 .idea/workspace.xml
+instance/config.py

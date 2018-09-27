@@ -47,7 +47,6 @@ class Record(object):
                 }
 
         self.calculate_macros()
-        print(self.misc['protein'])
 
         if 'calories_manual' in webform:
             self.misc["calories"] = webform["calories"]
@@ -60,7 +59,8 @@ class Record(object):
 
 
     def dataframe(self):
-        print('test')
+        # TODO
+        pass
 
     def calculate_macros(self):
 
@@ -76,13 +76,12 @@ class Record(object):
             fibre = fibre + food_info['fibre'] * food_grams / 100
 
         self.misc['protein'] = protein
-        print(protein)
         self.misc['fat'] = fat
         self.misc['carb'] = carb   # total carb including fibre
         self.misc['fibre'] = fibre
 
 
-    def save_to_mongo(self, user, date):
+    def save_to_db(self, user, date):
 
         if hasattr(self, 'update_default_flag'):
             self.db.users.update_one(
@@ -169,5 +168,5 @@ class Food(object):
 
 
 class Supplement(object):
+    # TODO
     pass
-
