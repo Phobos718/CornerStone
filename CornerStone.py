@@ -12,6 +12,7 @@ import pandas as pd
 import numpy as np
 import datetime
 import bcrypt
+import os
 
 
 app = Flask(__name__)
@@ -264,7 +265,8 @@ def create_figure(username):
     layout = column(main_row, p_factor1, p_factor2, bottom_row)
 
     # Add theme to document
-    theme = Theme("theme.yaml")
+    theme_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'theme.yaml')
+    theme = Theme(theme_path)
     doc = curdoc()
     doc.theme = theme
 
