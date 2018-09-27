@@ -27,7 +27,6 @@ mongo = PyMongo(app)
 @app.route('/home')
 def homePage():
     if 'username' in login_session:
-
         # Create the plot
         plot = create_figure(login_session['username'])
 
@@ -39,7 +38,6 @@ def homePage():
             div=div,
             login_session=login_session
         )
-
     return render_template('login.html')
 
 
@@ -47,19 +45,16 @@ def homePage():
 def login():
     users = mongo.db.users
     login_user = users.find_one({'name': request.form['username']})
-
     if login_user:
         if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password']) == login_user['password']:
             login_session['username'] = request.form['username']
             return redirect(url_for('homePage'))
-
     flash('Invalid username/password combination')
     return render_template('login.html')
 
 
 @app.route('/logout')
 def logout():
-
     login_session.clear()
     flash('You have logged out successfully')
     return redirect(url_for('homePage'))
@@ -68,16 +63,12 @@ def logout():
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
-
         newUser = User(request.form, mongo.db)
-
         if newUser.save_to_db():
             login_session['username'] = newUser.name
             return redirect(url_for('homePage'))
-
         flash('That username already exists!')
         return render_template('register.html')
-
     return render_template('register.html')
 
 
@@ -86,28 +77,22 @@ def register():
 def editRecord(record_date):
     if 'username' not in login_session:
          return redirect('/')
-
     if record_date == 'today':
         date = datetime.datetime.combine(datetime.date.today(), datetime.datetime.min.time())
     else:
         date = datetime.datetime(year=int(record_date[0:4]), month=int(record_date[5:7]), day=int(record_date[8:10]))
-
     if request.method == 'POST':
         if 'goto_date' in request.form:
             return redirect('/record/' + request.form['goto_date'])
-
         newRecord = Record(request.form, mongo.db)
         newRecord.save_to_db(login_session['username'], date)
         return redirect('/record/today')
     else:
-
         existing_record = mongo.db.records.find_one({"user": login_session['username'], "date": date})
-
         if existing_record:
             prefill = existing_record
         else:
             prefill = mongo.db.users.find_one({"name": login_session['username']})['defaults']
-
         return render_template(
             "editrecord.html",
             supplements=list(mongo.db.supplements.find()),
@@ -210,9 +195,9 @@ def create_figure(username):
             source.change.emit();
         """)
 
-    metric.callback=callback
-    factor1.callback=callback
-    factor2.callback=callback
+    metric.callback = callback
+    factor1.callback = callback
+    factor2.callback = callback
 
     p_timeline = figure(x_axis_type="datetime", y_axis_label='Variable', plot_height=300,
                 plot_width=1000, tools='pan,box_zoom,reset', )
@@ -274,7 +259,7 @@ def create_figure(username):
 
 
 if __name__ == '__main__':
-    app.secret_key = 'secret_key'
+    app.secret_key = 'super_secret_key'
     app.debug = True
     app.run(host='0.0.0.0', port=5000)
 
