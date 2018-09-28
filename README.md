@@ -13,14 +13,14 @@ The live version of this project is currently being hosted on AWS. Test user cre
 
 ## To-Do list (in order of priority)
 
-- Interactive data visualisation dashboard with Bokeh
+- Interactive data visualisation dashboard with Bokeh (in progress)
 - Ability for users to add new supplements and activities to DB like they can foods
-- Ability for users to directly modify survey prefill defaults
+- Ability for users to directly modify survey prefill defaults in a profile page
 - Front end improvements, bugfixes, better documentation
 - A minimal admin dashboard with database backup functionality
 - Items frequently entered by users to show up on top of selector list on the Edit Records page
 - Streamlining date selection on 'Edit Records' page via asynchronous calls
-- Improved security and login system
+- Improved security and login
 
 - MLP2
 
@@ -30,15 +30,3 @@ The live version of this project is currently being hosted on AWS. Test user cre
 2. MongoDB
 3. Flask
 4. Bokeh (for interactive data visualisation)
-
-
-## How to Run
-
-To run a development server, 
-1. simply spin up a local MongoDB instance and create the following collections:
-  - records
-  - supplements
-  - users
-  - (TBC)
-
-After having completed these steps, the site should be up and running on http://localhost:5000/
