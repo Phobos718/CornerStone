@@ -8,7 +8,7 @@ Once enough data is gathered it can be analysed by the user (see screenshots bel
 
 Many aspects of this project are still in a prototype phase, multiple changes in structure can be expected as I refactor the code to allow for better scalability. Net functionality is my top priority, therefore design and front end will be moving the slowest.
 
-The live version of this project is currently being hosted on AWS. Test user credentials will be posted here soon.
+The live version of this project is currently being hosted on AWS. Feel free to message me for access and test credentials.
 
 
 ## To-Do list (in order of priority)
