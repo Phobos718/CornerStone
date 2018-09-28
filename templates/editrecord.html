@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="container">
     {% with messages = get_flashed_messages() %}
         {% if messages %}
         <div class="flashbox">
@@ -35,7 +35,7 @@
 
     {% for i in metrics %}
     <div class="box">
-        <span>{{i.label}}</span>
+        <p>{{i.label}}</p>
         <input id="{{i.name}}" name="{{i.name}}" type="text"
             data-provide="slider"
             data-slider-ticks="[{% for num in range(i.max) %}{{num}},{% endfor %}{{i.max}}]"
@@ -53,7 +53,7 @@
     <h2>Food</h2>
     <div class="box">
 
-        <span>Feeding window:</span>
+        <p>Feeding window:</p>
         <input id="feeding_window" name="feeding_window" type="text"
             data-provide="slider"
             data-slider-ticks="[0, 3, 6, 9, 12, 15, 18, 21, 24]"
@@ -76,7 +76,7 @@
 
     {% for i in foods %}
     <div id="{{i.name}}" class="box" {% if prefill.foods[i.name] is not defined %}style="display: none"{% endif %}>
-        <span>{{i.label}} (1 unit = {{i.standard_portion}}g)</span>
+        <p>{{i.label}} (1 unit = {{i.standard_portion}}g)</p>
         <input name="{{i.name}}"
         data-provide="slider"
         data-slider-ticks="[{% for num in range(i.max_portions) %}{{num * i.standard_portion}},{% endfor %}{{i.max_portions * i.standard_portion}}]"
@@ -92,7 +92,7 @@
     {% endfor %}
 
     <div class="box">
-        <span>Calories:</span>
+        <p>Calories:</p>
         <input type="checkbox" id="calories_manual" name="calories_manual" value="True">Enter calories manually<br>
         <input id="calories" name="calories" type="text"
             data-provide="slider"
@@ -120,7 +120,7 @@
     </div>
 
     <div class="box">
-        <span>Coffee (Cup / Shot)</span>
+        <p>Coffee (Cup / Shot)</p>
         <input name="coffee"
         data-provide="slider"
         data-slider-ticks="[0, 1, 2, 3, 4, 5, 6]"
@@ -135,7 +135,7 @@
 
     {% for i in supplements %}
     <div id="{{i.name}}" class="box" {% if prefill.supplements[i.name] is not defined %} style="display: none" {% endif %}>
-        <span>{{i.label}} ({{i.standard_dose}}{{i.dose_unit}})</span>
+        <p>{{i.label}} ({{i.standard_dose}}{{i.dose_unit}})</p>
         <input name="{{i.name}}"
         data-provide="slider"
         data-slider-ticks="[0, 25, 50, 75, 100, 125, 150, 175, 200]"
@@ -165,14 +165,14 @@
     {% for i in activities %}
     <div id="{{i.name}}" class="box" {% if prefill.activities[i.name] is not defined %} style="display: none" {% endif %}>
         <h3>{{i.label}}</h3>
-        <span>Intensity:</span>
+        <p>Intensity:</p>
         <input id="{{i.name}}_intensity" name="{{i.name}}_intensity" type="text"
             data-provide="slider"
-            data-slider-ticks="[{% for num in range(i.max) %}{{num}},{% endfor %}{{i.max}}]"
-            data-slider-ticks-labels="[{% for num in range(i.max) %}{{num}},{% endfor %}{{i.max}}]"
+            data-slider-ticks="[{% for num in range(0, i.max, i.step) %}{{num}},{% endfor %}{{i.max}}]"
+            data-slider-ticks-labels="[{% for num in range(0, i.max, i.step) %}{{num}},{% endfor %}{{i.max}}]"
             data-slider-min="0"
             data-slider-max="{{i.max}}"
-            data-slider-step="{% if i.step is defined %}{{i.step}} {% else %}1{% endif %}"
+            data-slider-step="1"
             {% if prefill.activities[i.name] %}
             data-slider-value="{{prefill.activities[i.name].intensity}}"
             data-slider-rangeHighlights='[{ "start": 0, "end": {{prefill.activities[i.name].intensity}}, "class": "prefill" }]'
@@ -180,7 +180,7 @@
             data-slider-value="0"
             {% endif %}
         />
-        <span>Time of Day</span>
+        <p>Time of Day</p>
         <input id="{{i.name}}_time" name="{{i.name}}_time" type="text"
             data-provide="slider"
             data-slider-ticks="[0, 3, 6, 9, 12, 15, 18, 21, 24]"
@@ -202,6 +202,7 @@
     <input type="checkbox" name="save_default" value="True"> Save as user default<br>
 
     </form>
+</div>
 
     <script>
         $("#supplement_list").multiList();

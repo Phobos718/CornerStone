@@ -14,10 +14,13 @@
 <div class="box">
 
 	<a href="{{url_for('editRecord', record_date = 'today')}}">
-		<span class="title">Records</span>
+		<span class="title">Add/Edit Records</span>
 	</a>
 
-	<p>You're logged in as {{ login_session.username }}.</p>
+	<p>Displaying data for {{ login_session.username }}.</p>
+
+	{{ script|safe }}
+	{{ div|safe }}
 
 </div>
 
