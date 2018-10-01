@@ -16,6 +16,7 @@ The live version of this project is currently being hosted on AWS. Feel free to 
 - Interactive data visualisation dashboard with Bokeh (in progress)
 - Ability for users to add new supplements and activities to DB like they can foods
 - Ability for users to directly modify survey prefill defaults in a profile page
+- Serve JSON endpoints
 - Front end improvements, bugfixes, better documentation
 - A minimal admin dashboard with database backup functionality
 - Items frequently entered by users to show up on top of selector list on the Edit Records page
