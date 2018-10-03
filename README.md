@@ -12,9 +12,7 @@ The live version of this project is currently being hosted on AWS. Feel free to 
 
 ### Screenshots
 
-1
-2
-3
+to be added soon
 
 
 ## To-Do list (in order of priority)
