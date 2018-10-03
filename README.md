@@ -10,6 +10,12 @@ Many aspects of this project are still in a prototype phase, multiple changes in
 
 The live version of this project is currently being hosted on AWS. Feel free to message me for access and test credentials.
 
+# Screenshots
+
+1
+2
+3
+
 
 ## To-Do list (in order of priority)
 
