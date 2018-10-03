@@ -1,5 +1,6 @@
-## CornerStone - A project for exploratory data analysis of personal habits and their outcomes (under construction - new functionality added every week)
+## CornerStone - A project for exploratory data analysis of personal habits and their outcomes 
 
+!under construction - new functionality added every week!
 As a brief summary, this is a Flask application designed to gather data of a user's habits daily and to provide a platform for analyzing it via data visualisation and more advanced methods later on to allow for seeing through more noisy data.
 It's being developed predominantly for personal use as an attempt to identify the causes of certain food sensitivities and minor (although rather annoying) sleep disorders that run in my family and to maximise personal performance by eliminating them. 
 
