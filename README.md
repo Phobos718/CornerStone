@@ -5,7 +5,7 @@ It's being developed predominantly for personal use as an attempt to identify th
 
 Information is gathered via a survey (screenshots: <a href="images/activity.PNG">mobile</a>, <a href="images/rec2.PNG">desktop</a>) about food and supplement intake, physical and other activities, and a set of metrics each day. 
 Once enough data is gathered it can be displayed on the main dashboard. 
-(<a href="images/activity.PNG">Screenshot of current progress</a> - The top graph shows a set of generic metrics and a selectable one (red). The two small barcharts below show two variables selected by the user. Please note, this is about 50% finished. I wil update the screenshots when the layout and full functionality is added.
+<a href="images/dash.PNG">Screenshot of current progress</a> - The top graph shows a set of generic metrics and a selectable one (red). The two small barcharts below show two variables selected by the user. Please note, this is about 50% finished. I wil update the screenshots when the layout and full functionality is added.
 
 Many aspects of this project are still in a prototype phase, multiple changes in structure can be expected as I refactor the code to allow for better scalability. Net functionality is my top priority, therefore design and front end will be moving the slowest.
 
